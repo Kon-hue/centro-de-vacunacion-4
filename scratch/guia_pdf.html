@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía Completa: Sistema de Vacunación Nacional (Frontend)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    @page:first {
+      margin-top: 15mm;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      font-size: 13.5px;
+      margin: 0;
+      padding: 0;
+    }
+    .cover {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 2px solid #0284c7;
+      margin-bottom: 30px;
+      page-break-after: avoid;
+    }
+    .badge-gov {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 26px;
+      color: #0f172a;
+      margin: 10px 0 8px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .subtitle {
+      font-size: 15px;
+      color: #64748b;
+      margin: 0 0 15px;
+    }
+    .meta-box {
+      display: inline-flex;
+      gap: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #475569;
+    }
+    h2 {
+      color: #0369a1;
+      font-size: 18px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 28px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+    h3 {
+      color: #1e293b;
+      font-size: 15px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+    p {
+      margin: 0 0 12px;
+      text-align: justify;
+    }
+    ul, ol {
+      margin: 0 0 14px 20px;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    .callout {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 12.5px;
+    }
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 12.5px;
+    }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 11px;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin: 12px 0 16px;
+      page-break-inside: avoid;
+    }
+    code {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 11.5px;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 10.5px;
+    }
+    .badge-primary { background: #e0f2fe; color: #0369a1; }
+    .badge-success { background: #dcfce7; color: #15803d; }
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 35px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <span class="badge-gov">Arquitectura y Desarrollo Frontend</span>
+    <h1>Sistema Nacional de Vacunación</h1>
+    <div class="subtitle">Guía de Ingeniería Paso a Paso: Diseño, Componentes, Estado y Lógica en React</div>
+    <div class="meta-box">
+      <span><strong>Stack:</strong> React 19 + JavaScript + CSS Moderno</span>
+      <span><strong>Enfoque:</strong> 100% Frontend (Arquitectura por Capas)</span>
+      <span><strong>Nivel:</strong> De Fundamentos a Proyecto Profesional</span>
+    </div>
+  </div>
+
+  <h2>1. ¿Qué es y qué problemas resuelve este sistema?</h2>
+  <p>
+    Un <strong>Sistema de Vacunación Nacional</strong> es una plataforma pública y hospitalaria crítica. 
+    Desde la perspectiva de <strong>Frontend</strong>, debe resolver tres necesidades operativas con la máxima 
+    usabilidad, claridad y velocidad de respuesta:
+  </p>
+  <ul>
+    <li><strong>Portal Ciudadano (Consulta de Carnet Digital):</strong> Permite a cualquier habitante consultar su historial oficial de dosis aplicadas buscando por documento de identidad (DNI/Cédula), ver su estado (esquema completo o incompleto) y generar su certificado.</li>
+    <li><strong>Agendamiento de Citas:</strong> Permite reservar turno seleccionando centro de vacunación, tipo de vacuna (COVID-19, Influenza, Hepatitis B, etc.), fecha y franja horaria disponible.</li>
+    <li><strong>Módulo de Registro Clínico (Personal Sanitario):</strong> Formulario rápido para que el enfermero/vacunador registre la aplicación en tiempo real (lote de vacuna, fecha, centro de salud y observaciones).</li>
+    <li><strong>Tablero Estadístico (Dashboard):</strong> Métricas visibles de dosis aplicadas, porcentaje de cobertura y stock estimado.</li>
+  </ul>
+
+  <div class="callout-info">
+    <div class="callout-title">💡 ¿Por qué enfocarse primero en el Frontend?</div>
+    Construir primero el Frontend con datos simulados (<em>Mock Data</em>) y estado local permite validar toda la experiencia de usuario (UX), definir exactamente qué datos viajarán en la API y tener un prototipo 100% interactivo y visual antes de configurar servidores o bases de datos complejas.
+  </div>
+
+  <h2>2. Arquitectura de Carpetas del Proyecto</h2>
+  <p>
+    Para evitar tener código desordenado en un solo archivo, una aplicación profesional de React se divide en capas de responsabilidad dentro de la carpeta <code>src/</code>:
+  </p>
+  <pre><code>src/
+├── components/          # Elementos reutilizables de UI
+│   ├── Navbar.jsx       # Barra de navegación principal y escudo nacional
+│   ├── StatCard.jsx     # Tarjetas de indicadores numéricos (Dashboard)
+│   └── CarnetCard.jsx   # Tarjeta visual estilo credencial de vacunación
+├── views/               # Pantallas completas del sistema
+│   ├── DashboardView.jsx# Vista general con estadísticas
+│   ├── ConsultaView.jsx # Buscador por DNI y carnet digital
+│   ├── CitasView.jsx    # Formulario para agendar cita
+│   └── RegistroView.jsx # Módulo del personal de salud para aplicar dosis
+├── data/
+│   └── initialData.js   # Datos simulados de vacunas, centros y pacientes
+├── App.css              # Estilos visuales con paleta médica moderna
+├── App.js               # Componente raíz con control de pestañas y estado global
+└── index.js             # Punto de entrada de React</code></pre>
+
+  <div class="page-break"></div>
+
+  <h2>3. Modelado de Datos: La Estructura de Información</h2>
+  <p>
+    Antes de escribir componentes visuales, necesitamos definir la "forma" de nuestros datos. 
+    Creamos un archivo <code>src/data/initialData.js</code> que funcionará como nuestra base de datos local:
+  </p>
+
+  <pre><code>// src/data/initialData.js
+
+export const CATALOGO_VACUNAS = [
+  { id: 'VAC-01', nombre: 'COVID-19 (Bivalente)', dosisRequeridas: 2, fabricante: 'Pfizer-BioNTech' },
+  { id: 'VAC-02', nombre: 'Influenza Estacional', dosisRequeridas: 1, fabricante: 'Sanofi Pasteur' },
+  { id: 'VAC-03', nombre: 'Hepatitis B', dosisRequeridas: 3, fabricante: 'GlaxoSmithKline' },
+  { id: 'VAC-04', nombre: 'Fiebre Amarilla', dosisRequeridas: 1, fabricante: 'Bio-Manguinhos' }
+];
+
+export const CENTROS_SALUD = [
+  { id: 'CS-01', nombre: 'Hospital Central Metropolitano', municipio: 'Centro' },
+  { id: 'CS-02', nombre: 'Centro de Salud Norte Dr. Vargas', municipio: 'Norte' },
+  { id: 'CS-03', nombre: 'Puesto Sanitario Comunitario Sur', municipio: 'Sur' }
+];
+
+export const REGISTROS_INICIALES = [
+  {
+    id: 'REG-101',
+    dni: '12345678',
+    paciente: 'Carlos Eduardo Mendoza',
+    vacunaId: 'VAC-01',
+    vacunaNombre: 'COVID-19 (Bivalente)',
+    dosisNumero: 1,
+    fechaAplicacion: '2026-02-15',
+    lote: 'PFZ-2026-A9',
+    centroSalud: 'Hospital Central Metropolitano',
+    vacunador: 'Lic. Laura Peña'
+  },
+  {
+    id: 'REG-102',
+    dni: '12345678',
+    paciente: 'Carlos Eduardo Mendoza',
+    vacunaId: 'VAC-01',
+    vacunaNombre: 'COVID-19 (Bivalente)',
+    dosisNumero: 2,
+    fechaAplicacion: '2026-05-20',
+    lote: 'PFZ-2026-B4',
+    centroSalud: 'Hospital Central Metropolitano',
+    vacunador: 'Lic. Andrés Silva'
+  }
+];</code></pre>
+
+  <div class="callout">
+    <div class="callout-title">🔍 ¿Por qué estructurarlo así?</div>
+    Cada registro vincula un <code>dni</code> único con una <code>vacunaId</code> y el número de dosis. Esto permite saber de inmediato si el paciente tiene el esquema completo comparando <code>dosisNumero</code> con las <code>dosisRequeridas</code> del catálogo.
+  </div>
+
+  <h2>4. Componentes Clave: Código y el "Por Qué" de Cada Línea</h2>
+
+  <h3>A. Barra de Navegación con Pestañas (<code>Navbar.jsx</code>)</h3>
+  <p>
+    Permite alternar entre las diferentes vistas de la aplicación sin recargar la página:
+  </p>
+  <pre><code>// src/components/Navbar.jsx
+import React from 'react';
+
+export default function Navbar({ pestanaActiva, setPestanaActiva }) {
+  const enlaces = [
+    { id: 'dashboard', texto: '📊 Panel General' },
+    { id: 'consulta', texto: '🔍 Consulta Ciudadana' },
+    { id: 'citas', texto: '📅 Agendar Cita' },
+    { id: 'registro', texto: '💉 Registro de Dosis' }
+  ];
+
+  return (
+    &lt;header className="header-nav"&gt;
+      &lt;div className="brand"&gt;
+        &lt;span className="flag-icon"&gt;🏛️&lt;/span&gt;
+        &lt;div&gt;
+          &lt;h1 className="brand-title"&gt;SISNAV&lt;/h1&gt;
+          &lt;span className="brand-sub"&gt;Sistema Nacional de Vacunación&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;nav className="nav-buttons"&gt;
+        {enlaces.map((enlace) =&gt; (
+          &lt;button
+            key={enlace.id}
+            className={`nav-btn ${pestanaActiva === enlace.id ? 'active' : ''}`}
+            onClick={() =&gt; setPestanaActiva(enlace.id)}
+          &gt;
+            {enlace.texto}
+          &lt;/button&gt;
+        ))}
+      &lt;/nav&gt;
+    &lt;/header&gt;
+  );
+}</code></pre>
+  <p>
+    <strong>El porqué:</strong> En lugar de instalar dependencias externas de enrutamiento al comenzar, usamos un estado <code>pestanaActiva</code> en el componente padre. Al hacer clic en un botón, se actualiza el estado y React renderiza la vista solicitada de forma instantánea.
+  </p>
+
+  <div class="page-break"></div>
+
+  <h3>B. Módulo de Consulta Ciudadana y Carnet Digital (<code>ConsultaView.jsx</code>)</h3>
+  <p>
+    Esta es la interfaz que usará el público general. Recibe el listado completo de registros y filtra por DNI:
+  </p>
+
+  <pre><code>// src/views/ConsultaView.jsx
+import React, { useState } from 'react';
+
+export default function ConsultaView({ registros }) {
+  // 1. Estados locales para el input de búsqueda y el resultado
+  const [busquedaDni, setBusquedaDni] = useState('');
+  const [pacienteConsultado, setPacienteConsultado] = useState(null);
+  const [historialEncontrado, setHistorialEncontrado] = useState([]);
+  const [haBuscado, setHaBuscado] = useState(false);
+
+  // 2. Función que ejecuta el filtro cuando se presiona Buscar
+  const handleBuscar = (e) =&gt; {
+    e.preventDefault();
+    const dniLimpio = busquedaDni.trim();
+    if (!dniLimpio) return;
+
+    // Filtramos los registros que coincidan exactamente con el DNI
+    const resultados = registros.filter(r =&gt; r.dni === dniLimpio);
+
+    setHistorialEncontrado(resultados);
+    setHaBuscado(true);
+
+    if (resultados.length &gt; 0) {
+      setPacienteConsultado(resultados[0].paciente);
+    } else {
+      setPacienteConsultado(null);
+    }
+  };
+
+  return (
+    &lt;div className="view-container"&gt;
+      &lt;div className="card search-card"&gt;
+        &lt;h2&gt;Consulta de Carnet Oficial de Vacunación&lt;/h2&gt;
+        &lt;p&gt;Ingresa tu número de documento de identidad para verificar tus dosis registradas.&lt;/p&gt;
+        
+        &lt;form onSubmit={handleBuscar} className="search-form"&gt;
+          &lt;input
+            type="text"
+            placeholder="Ej: 12345678"
+            value={busquedaDni}
+            onChange={(e) =&gt; setBusquedaDni(e.target.value)}
+            className="input-field"
+            required
+          /&gt;
+          &lt;button type="submit" className="btn btn-primary"&gt;
+            Consultar Carnet
+          &lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+
+      {/* 3. Renderizado condicional según el resultado */}
+      {haBuscado && historialEncontrado.length &gt; 0 && (
+        &lt;div className="card carnet-digital"&gt;
+          &lt;div className="carnet-header"&gt;
+            &lt;div&gt;
+              &lt;span className="badge badge-success"&gt;✓ Registro Oficial Activo&lt;/span&gt;
+              &lt;h3 className="patient-name"&gt;{pacienteConsultado}&lt;/h3&gt;
+              &lt;p className="patient-dni"&gt;Documento: {busquedaDni}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div className="qr-simulado"&gt;[QR Verificación]&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;table className="table-carnet"&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                &lt;th&gt;Vacuna&lt;/th&gt;
+                &lt;th&gt;Dosis&lt;/th&gt;
+                &lt;th&gt;Fecha&lt;/th&gt;
+                &lt;th&gt;Lote&lt;/th&gt;
+                &lt;th&gt;Establecimiento&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              {historialEncontrado.map((item) =&gt; (
+                &lt;tr key={item.id}&gt;
+                  &lt;td&gt;&lt;strong&gt;{item.vacunaNombre}&lt;/strong&gt;&lt;/td&gt;
+                  &lt;td&gt;Dosis #{item.dosisNumero}&lt;/td&gt;
+                  &lt;td&gt;{item.fechaAplicacion}&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;{item.lote}&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;{item.centroSalud}&lt;/td&gt;
+                &lt;/tr&gt;
+              ))}
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+      )}
+
+      {haBuscado && historialEncontrado.length === 0 && (
+        &lt;div className="callout" style={{ background: '#fff1f2', borderColor: '#e11d48' }}&gt;
+          &lt;div className="callout-title" style={{ color: '#9f1239' }}&gt;No se encontraron registros&lt;/div&gt;
+          No se encontró ninguna dosis aplicada al DNI &lt;strong&gt;{busquedaDni}&lt;/strong&gt;.
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+  <div class="page-break"></div>
+
+  <h3>C. Módulo del Vacunador / Registro Clínico (<code>RegistroView.jsx</code>)</h3>
+  <p>
+    Este módulo permite al personal de salud registrar una nueva dosis aplicada. Utiliza un <strong>formulario controlado</strong> con validaciones:
+  </p>
+
+  <pre><code>// src/views/RegistroView.jsx
+import React, { useState } from 'react';
+
+export default function RegistroView({ catalogoVacunas, centrosSalud, onRegistrarDosis }) {
+  // Estado único para agrupar los campos del formulario
+  const [form, setForm] = useState({
+    dni: '',
+    paciente: '',
+    vacunaId: catalogoVacunas[0]?.id || '',
+    dosisNumero: 1,
+    fechaAplicacion: new Date().toISOString().split('T')[0],
+    lote: '',
+    centroSalud: centrosSalud[0]?.nombre || '',
+    vacunador: ''
+  });
+
+  const [mensajeExito, setMensajeExito] = useState(false);
+
+  // Manejador genérico para cualquier cambio de campo
+  const handleChange = (e) =&gt; {
+    const { name, value } = e.target;
+    setForm(prev =&gt; ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) =&gt; {
+    e.preventDefault();
+    const vacunaSeleccionada = catalogoVacunas.find(v =&gt; v.id === form.vacunaId);
+    
+    // Creamos el nuevo registro
+    const nuevoRegistro = {
+      ...form,
+      id: 'REG-' + Date.now(),
+      vacunaNombre: vacunaSeleccionada ? vacunaSeleccionada.nombre : form.vacunaId,
+      dosisNumero: Number(form.dosisNumero)
+    };
+
+    onRegistrarDosis(nuevoRegistro);
+    setMensajeExito(true);
+
+    // Limpiamos los campos clave tras el registro
+    setForm(prev =&gt; ({
+      ...prev,
+      dni: '',
+      paciente: '',
+      lote: '',
+      vacunador: ''
+    }));
+
+    setTimeout(() =&gt; setMensajeExito(false), 4000);
+  };
+
+  return (
+    &lt;div className="view-container"&gt;
+      &lt;div className="card"&gt;
+        &lt;h2&gt;Registro de Aplicación de Vacuna&lt;/h2&gt;
+        &lt;p&gt;Formulario oficial para el personal de enfermería y vacunación.&lt;/p&gt;
+
+        {mensajeExito && (
+          &lt;div className="callout"&gt;
+            &lt;div className="callout-title"&gt;✓ ¡Dosis Registrada con Éxito!&lt;/div&gt;
+            La vacuna ha sido incorporada al historial clínico del ciudadano.
+          &lt;/div&gt;
+        )}
+
+        &lt;form onSubmit={handleSubmit} className="grid-form"&gt;
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;DNI / Identificación del Paciente&lt;/label&gt;
+            &lt;input
+              type="text"
+              name="dni"
+              value={form.dni}
+              onChange={handleChange}
+              required
+              placeholder="Número de cédula o DNI"
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;Nombre Completo del Paciente&lt;/label&gt;
+            &lt;input
+              type="text"
+              name="paciente"
+              value={form.paciente}
+              onChange={handleChange}
+              required
+              placeholder="Ej: Sofía Ramírez"
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;Tipo de Vacuna (Biológico)&lt;/label&gt;
+            &lt;select name="vacunaId" value={form.vacunaId} onChange={handleChange}&gt;
+              {catalogoVacunas.map(v =&gt; (
+                &lt;option key={v.id} value={v.id}&gt;{v.nombre} ({v.fabricante})&lt;/option&gt;
+              ))}
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;Número de Dosis&lt;/label&gt;
+            &lt;input
+              type="number"
+              name="dosisNumero"
+              min="1"
+              max="5"
+              value={form.dosisNumero}
+              onChange={handleChange}
+              required
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;Lote de Vacuna&lt;/label&gt;
+            &lt;input
+              type="text"
+              name="lote"
+              value={form.lote}
+              onChange={handleChange}
+              required
+              placeholder="Ej: LOTE-2026-X7"
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div className="form-group"&gt;
+            &lt;label&gt;Centro de Salud&lt;/label&gt;
+            &lt;select name="centroSalud" value={form.centroSalud} onChange={handleChange}&gt;
+              {centrosSalud.map(c =&gt; (
+                &lt;option key={c.id} value={c.nombre}&gt;{c.nombre}&lt;/option&gt;
+              ))}
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;button type="submit" className="btn btn-primary" style={{ gridColumn: 'span 2' }}&gt;
+            Guardar y Certificar Dosis
+          &lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+  <div class="page-break"></div>
+
+  <h2>5. El Componente Central: <code>App.js</code> y Persistencia</h2>
+  <p>
+    En <code>App.js</code> orquestamos todo el estado de la aplicación. Para que los registros ingresados <strong>no se borren</strong> cuando el usuario recargue la página en el navegador, utilizamos <code>localStorage</code>:
+  </p>
+
+  <pre><code>// src/App.js
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import DashboardView from './views/DashboardView';
+import ConsultaView from './views/ConsultaView';
+import CitasView from './views/CitasView';
+import RegistroView from './views/RegistroView';
+import { CATALOGO_VACUNAS, CENTROS_SALUD, REGISTROS_INICIALES } from './data/initialData';
+import './App.css';
+
+function App() {
+  const [pestanaActiva, setPestanaActiva] = useState('dashboard');
+
+  // Inicializamos el estado cargando de localStorage o con los datos por defecto
+  const [registros, setRegistros] = useState(() =&gt; {
+    const guardados = localStorage.getItem('SISNAV_REGISTROS');
+    return guardados ? JSON.parse(guardados) : REGISTROS_INICIALES;
+  });
+
+  // Cada vez que 'registros' cambie, lo guardamos automáticamente
+  useEffect(() =&gt; {
+    localStorage.setItem('SISNAV_REGISTROS', JSON.stringify(registros));
+  }, [registros]);
+
+  // Función para agregar un nuevo registro
+  const handleRegistrarDosis = (nuevo) =&gt; {
+    setRegistros(prev =&gt; [nuevo, ...prev]);
+  };
+
+  return (
+    &lt;div className="app-layout"&gt;
+      &lt;Navbar pestanaActiva={pestanaActiva} setPestanaActiva={setPestanaActiva} /&gt;
+
+      &lt;main className="main-content"&gt;
+        {pestanaActiva === 'dashboard' && (
+          &lt;DashboardView registros={registros} catalogoVacunas={CATALOGO_VACUNAS} /&gt;
+        )}
+        {pestanaActiva === 'consulta' && (
+          &lt;ConsultaView registros={registros} /&gt;
+        )}
+        {pestanaActiva === 'citas' && (
+          &lt;CitasView centrosSalud={CENTROS_SALUD} catalogoVacunas={CATALOGO_VACUNAS} /&gt;
+        )}
+        {pestanaActiva === 'registro' && (
+          &lt;RegistroView
+            catalogoVacunas={CATALOGO_VACUNAS}
+            centrosSalud={CENTROS_SALUD}
+            onRegistrarDosis={handleRegistrarDosis}
+          /&gt;
+        )}
+      &lt;/main&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+
+  <h2>6. Resumen de Buenas Prácticas Aplicadas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Dónde se aplica</th>
+        <th>Beneficio Técnico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Lazy Initial State</strong></td>
+        <td><code>useState(() =&gt; localStorage...)</code></td>
+        <td>Evita leer el disco en cada render; solo se lee una vez al cargar la web.</td>
+      </tr>
+      <tr>
+        <td><strong>Inmutabilidad del Estado</strong></td>
+        <td><code>setRegistros(prev =&gt; [nuevo, ...prev])</code></td>
+        <td>React detecta el cambio de referencia y re-renderiza eficientemente la tabla.</td>
+      </tr>
+      <tr>
+        <td><strong>Formularios Controlados</strong></td>
+        <td><code>value={form.campo} onChange={...}</code></td>
+        <td>React es la única fuente de verdad; previene inconsistencias entre el DOM y los datos.</td>
+      </tr>
+      <tr>
+        <td><strong>Componentes Puros</strong></td>
+        <td><code>Navbar</code>, <code>StatCard</code></td>
+        <td>Fáciles de testear y reutilizar en cualquier parte del sistema.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    Documento oficial de desarrollo frontend — Proyecto Sistema Nacional de Vacunación (SISNAV).
+  </div>
+
+</body>
+</html>
